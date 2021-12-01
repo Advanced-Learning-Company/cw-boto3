@@ -177,7 +177,8 @@ def check_queues(host, port, environment, deploy, max_metrics, threshold,
                         if (redis_client.type(k) == b'list' and
                             not k.decode().endswith(".pidbox") and
                             not k.decode().startswith("_kombu"))])
-
+    print("Redis queues::" + str(redis_queues))
+    
     all_queues = existing_queues + list(
         set(redis_queues).difference(existing_queues)
     )
