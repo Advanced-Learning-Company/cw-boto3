@@ -162,7 +162,7 @@ def check_queues(host, port, environment, deploy, max_metrics, threshold,
     response = cloudwatch.list_metrics(Namespace=namespace,
                                        MetricName=metric_name,
                                        Dimensions=[{'Name': dimension}])
-    print("Response::" + response)
+    print("Response::" + str(response))
 
     existing_queues = []
     for m in response["Metrics"]:
@@ -182,7 +182,7 @@ def check_queues(host, port, environment, deploy, max_metrics, threshold,
         set(redis_queues).difference(existing_queues)
     )
 
-    print("All queues::" + all_queues)
+    print("All queues::" + str(all_queues))
 
     metric_data = []
 
@@ -197,7 +197,7 @@ def check_queues(host, port, environment, deploy, max_metrics, threshold,
             'Unit': 'Count',
         })
 
-    print("Metric Data::" + metric_data)
+    print("Metric Data::" + str(metric_data))
 
     # if len(metric_data) > 0:
     #     for metric_data_grouped in grouper(metric_data, max_metrics):
